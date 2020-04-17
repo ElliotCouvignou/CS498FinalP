@@ -1,1 +1,26 @@
-memes
+
+NOTE: the master branch should always be stable and only has features once they are finished.
+This is the branch we should demo with.
+
+** request to become a contributor before you are allowed to push changes **
+
+
+How to use github/Unity:
+
+* please follow these steps as they are in place to reduce any github conflicts. You will be shamed for breaking rules *
+
+SETUP:
+1. clone repo.
+2. Make a new branch for the feature you want (git checkout -b <new branch name> <reference branch>)
+3. DO NOT WORK ON MASTER
+4. DO NOT WORK ON MASTER
+5. Make pull requests via browser (a lot easier) and add us to reviewers if you want to push your feature to master.
+
+PUSHING:
+
+* SAVE AND CLOSE YOUR UNITY EDITOR BEFORE GIT ADD * - files exist only while the editor is open, these are 'junk' files to us
+
+* If you only made scripts, then only add them, BE CAREFUL WHEN USING "git add -A", this usually leads to merging conflicts later on *
+
+
+
