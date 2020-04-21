@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
 
     public float moveSpeed = 100f;
+    public float acceleration = 4f;
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
     public float airStrafe = 20f; // lower val -> more control
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         // ground movement
         if (isGrounded)
         {
-            Vector3 move = (transform.right * x + transform.forward * y) * 10f;
+            Vector3 move = (transform.right * x + transform.forward * y) * acceleration;
             velocity.x += move.x;
             velocity.z += move.z;
             velocity = Vector3.ClampMagnitude(velocity, moveSpeed);
@@ -56,20 +57,23 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            // air strafe?
+            // Gravity
             velocity.y += gravity * Time.deltaTime;  //  x = 1/2 a t^2
-
         }
-
         // jumping
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("Vel: ");
+            Debug.Log(velocity.normalized);
+            Debug.Log("Forward: ");
+            Debug.Log(transform.forward);
             velocity.y = Mathf.Sqrt(jumpHeight*-1f* gravity);
             isGrounded = false;
         }
 
         // apply movement
         controller.Move(velocity * Time.deltaTime);
+
 
 
     }
