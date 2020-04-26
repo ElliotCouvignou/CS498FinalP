@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     float xRotation = 0f;
 
     public Camera FPSCam;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class CameraMovement : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        FPSCam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        FPSCam.transform.localRotation = Quaternion.Euler(xRotation, 0f, FPSCam.transform.localEulerAngles.z);
 
         transform.Rotate(Vector3.up * mouseX);
     }
