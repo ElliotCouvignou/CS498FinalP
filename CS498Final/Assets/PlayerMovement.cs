@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             // apply ground friction
             if (!hasMoveInput)
             {
-                velocity = velocity - velocity*groundFriction * Time.deltaTime;
+                velocity -= velocity*groundFriction * Time.deltaTime;
             }
         }
         else

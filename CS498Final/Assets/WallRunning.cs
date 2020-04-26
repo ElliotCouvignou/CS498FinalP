@@ -15,9 +15,10 @@ public class WallRunning : MonoBehaviour
 
     public Camera FPSCamera;
     public float cameraTilt = 10;
-    public float wallFriciton = 1.5f;
+    public float wallGravity = 0.5f;
     public float wallRunSpeed = 15f;
     public float wallRunJumpImpulse = 15f;
+    public float wallFriction = 20f;
 
     public float wallRunTimeout = 0.1f;
     private bool wallRunTimedOut = false;
@@ -86,7 +87,7 @@ public class WallRunning : MonoBehaviour
         // Step 2: find vector/line for surface we can move across
         updateReady = false;
 
-
+        
         StartCoroutine(recordDirNextFrame());
     }
 
@@ -113,8 +114,6 @@ public class WallRunning : MonoBehaviour
             return;
         if (!updateReady)
         {
-            // give small y boost cause why not
-            player.velocity.y += player.jumpHeight * Time.deltaTime;
             return;
         }
         // Update velocity on User inputs and Gravity + wallFriction
@@ -136,9 +135,17 @@ public class WallRunning : MonoBehaviour
             player.velocity.x = velocityXZ.x;
             player.velocity.z = velocityXZ.z;
         }
+
+        // apply friction
+        if (!hasMoveInput)
+        {
+            player.velocity.x /= wallFriction;
+            player.velocity.z /= wallFriction;
+        }
         
-        // add force from gravity
-        player.velocity.y += player.gravity / wallFriciton * Time.deltaTime;  //  x = 1/2 a t^2
+        // add reduced force from gravity only when negative (running up walls)
+        player.velocity.y += player.gravity * wallGravity * Time.deltaTime;  //  x = 1/2 a t^2
+        Debug.Log(player.velocity.y);
     }
 
     public bool jumpExitWallRun()
@@ -152,7 +159,6 @@ public class WallRunning : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         Vector3 move =  (transform.forward) * wallRunJumpImpulse;
         move.y = move.magnitude;
-        Debug.Log(move.magnitude);
         player.velocity += wallRunJumpImpulse * move.normalized;
 
         undoWallRun();

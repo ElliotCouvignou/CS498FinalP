@@ -712,7 +712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236215336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.2, y: 4.25, z: 11.2}
+  m_LocalPosition: {x: -26.2, y: 12.8, z: 11.2}
   m_LocalScale: {x: 34.093422, y: 17.547958, z: 3.638488}
   m_Children: []
   m_Father: {fileID: 0}
@@ -833,7 +833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779007664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.6, y: 7.21, z: -15.97}
+  m_LocalPosition: {x: -44.8, y: 11.6, z: -3.4}
   m_LocalScale: {x: 19.38, y: 12.54, z: 3.28}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1061,13 +1061,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  sprintSpeed: 15
+  sprintSpeed: 17.5
   walkSpeed: 10
   acceleration: 100
   gravity: -29.43
   jumpHeight: 6
   airStrafe: 2
-  groundFriction: 19
+  groundFriction: 25
   groundCheck: {fileID: 1170655403}
   groundDistance: 0.4
   groundMask:
@@ -1095,10 +1095,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   wallRunAcceleration: 3
-  transitionTime_s: 0.2
+  transitionTime_s: 0.15
   FPSCamera: {fileID: 534669904}
   cameraTilt: 10
-  wallFriciton: 2
+  wallGravity: 0.5
   wallRunSpeed: 15
   wallRunJumpImpulse: 20
+  wallFriction: 1.001
   wallRunTimeout: 0.4
