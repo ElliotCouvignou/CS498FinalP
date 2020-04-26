@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     bool isSliding;
     bool isSprinting;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         isWallRunning = false;
         isSliding = false;
         isSprinting = false;
+
     }
 
     // Update is called once per frame
