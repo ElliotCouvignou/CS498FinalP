@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour
     float xRotation = 0f;
 
     public Camera FPSCam;
-    
+
     // Start is called before the first frame update
     void Start()
     {
