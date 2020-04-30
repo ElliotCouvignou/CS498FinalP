@@ -51,26 +51,16 @@ public class WallRunning : MonoBehaviour
     {
         if (wallRunTimedOut)
             return 0;
-
        
         Collider[] leftOverlap = Physics.OverlapSphere(wallCheckL.position, wallRunDistance, wallRunMask);
         Collider[] rightOverlap = Physics.OverlapSphere(wallCheckR.position, wallRunDistance, wallRunMask);
 
-        bool leftCheck = false;
-        bool rightCheck = false;
-        int ret = 0;
-        
         if (leftOverlap.Length == 1)
-        {
-            leftCheck = true;
-            ret = 1;
-        }
+            return 1;
         else if (rightOverlap.Length == 1)
-        {
-            rightCheck = true;
-            ret = 2;
-        }
-        return ret;
+            return 2;
+
+        return 0;
     }
 
     // called only once as transition into wallrunning
@@ -86,7 +76,6 @@ public class WallRunning : MonoBehaviour
 
         // Step 2: find vector/line for surface we can move across
         updateReady = false;
-
         
         StartCoroutine(recordDirNextFrame());
     }
@@ -103,9 +92,6 @@ public class WallRunning : MonoBehaviour
             StartCoroutine(rotateCameraZ(-cameraTilt, 0f));
 
         onLeft = false;
-
-        
-
     }
     
     public void inWallRunUpdate()
@@ -145,7 +131,6 @@ public class WallRunning : MonoBehaviour
         
         // add reduced force from gravity only when negative (running up walls)
         player.velocity.y += player.gravity * wallGravity * Time.deltaTime;  //  x = 1/2 a t^2
-        Debug.Log(player.velocity.y);
     }
 
     public bool jumpExitWallRun()
@@ -227,7 +212,6 @@ public class WallRunning : MonoBehaviour
             curtime += Time.deltaTime;
             float perc = Mathf.Clamp(curtime / transitionTime_s, 0f, 1f);
             float angle =  Mathf.Lerp(start, end, perc);
-            Debug.Log(angle);
             FPSCamera.transform.localRotation = Quaternion.Euler(FPSCamera.transform.localEulerAngles.x, 0f, angle);
             yield return null;
         }

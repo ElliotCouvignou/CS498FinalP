@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // THIS IS NOT USINGRIGIDBODIES, they tend to cause collision issues from what i see
-    
+
 
     private CharacterController controller;
     private WallRunning WR_script;
+    private Sliding slide_script;
 
     public float moveSpeed = 10f;
     public float sprintSpeed = 15f;
@@ -24,9 +25,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     public Vector3 velocity;
-    bool isGrounded;
+    public bool isGrounded;
     public bool isWallRunning;
-    bool isSliding;
+    public bool isSliding;
     bool isSprinting;
 
 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         // update movespeed so equillibrium speed = expected movespeed
         WR_script = GetComponent<WallRunning>();
         controller = GetComponent<CharacterController>();
+        slide_script = GetComponent<Sliding>();
         velocity = new Vector3(1f, 0f, -1f);
 
         isWallRunning = false;
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallRunning = false;
             GetComponent<WallRunning>().undoWallRun();
-        }    
+        }
 
 
 
@@ -68,41 +70,60 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         bool hasMoveInput = Mathf.Abs(x) > 0.1f || Mathf.Abs(y) > 0.1f;
         bool SprintPressed = Input.GetKey(KeyCode.LeftShift);
-       
+
+        bool slideStatus = slide_script.checkSlide();
+
         // ground movement
         if (isGrounded)
         {
-            if (hasMoveInput)
+            if (slideStatus)
             {
-                // check for sprints
-                isSprinting = SprintPressed;
-                if (isSprinting)
-                    moveSpeed = sprintSpeed;
-                else
-                    moveSpeed = walkSpeed;
+                isSliding = true;
+                slide_script.enterSlide();
+            }
+
+            if (!isSliding)
+            {
                 
-                Vector3 move = (transform.right * x + transform.forward * y) * acceleration;
-                velocity.x += move.x;
-                velocity.z += move.z;
-                velocity = Vector3.ClampMagnitude(velocity, moveSpeed);
-            }
-            if (isWallRunning)
-            {
-                // exit
-                isWallRunning = false;
-                WR_script.undoWallRun();
-            }
+                if (hasMoveInput)
+                {
+                    // check for sprints
+                    isSprinting = SprintPressed;
+                    if (isSprinting)
+                        moveSpeed = sprintSpeed;
+                    else
+                        moveSpeed = walkSpeed;
 
-            // reset Y velocity of we touch ground
-            if (hasMoveInput && velocity.y < -0.5f)
-            {
-                velocity.y = -0.5f; // make sure we 'stick' to ground
-            }
+                    Vector3 move = (transform.right * x + transform.forward * y) * acceleration;
+                    float premag = new Vector3(velocity.x, 0f, velocity.y).magnitude;
+                    velocity.x += move.x;
+                    velocity.z += move.z;
+                    
+                    velocity = Vector3.ClampMagnitude(velocity, moveSpeed);
+                }
+                if (isWallRunning)
+                {
+                    // exit
+                    isWallRunning = false;
+                    WR_script.undoWallRun();
+                }
 
-            // apply ground friction
-            if (!hasMoveInput)
+                // reset Y velocity of we touch ground
+                if (hasMoveInput && velocity.y < -0.5f)
+                    velocity.y = -0.5f; // make sure we 'stick' to ground
+
+                // apply ground friction
+                if (!hasMoveInput)
+                {
+                    velocity.x /= groundFriction;
+                    velocity.z /= groundFriction;
+                }
+                
+                
+            }
+            else
             {
-                velocity -= velocity*groundFriction * Time.deltaTime;
+                slide_script.slideUpdate();
             }
         }
         else
@@ -120,35 +141,36 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Gravity
-            if(!isWallRunning)
+            if (!isWallRunning)
                 velocity.y += gravity * Time.deltaTime;  //  x = 1/2 a t^2
             else
                 WR_script.inWallRunUpdate();
+
+            // if sliding, stop and undo
+            if (isSliding)
+            {
+                isSliding = false;
+                slide_script.exitSlide();
+            }
         }
         // jumping
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded)
+            if (isGrounded && !isSliding)
             {
-                velocity.y = 0;
-                float mag = velocity.magnitude;
+                JumpFromGrounded(x, y);
 
-                if (hasMoveInput)
-                {
-                    Vector3 move = (transform.right * x + transform.forward * y) * mag;
-                    velocity = new Vector3(move.x, Mathf.Sqrt(jumpHeight * -1f * gravity), move.z);
-                }
-                else
-                {
-                    velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
-                }
-                
                 isGrounded = false;
                 isSprinting = false;
             }
-            else if (isWallRunning)
+            else if (isGrounded && isSliding)
             {
-                if(WR_script.jumpExitWallRun())
+                if(slide_script.jumpFromSlide())
+                    isSliding = false;
+            }
+            else if (isWallRunning) 
+            {
+                if (WR_script.jumpExitWallRun())
                     isWallRunning = false;
             }
             else
@@ -164,5 +186,15 @@ public class PlayerMovement : MonoBehaviour
         // apply movement
         controller.Move(velocity * Time.deltaTime);
 
+    }
+
+    public void JumpFromGrounded(float x, float y)
+    {
+        float premag = velocity.magnitude;
+        Vector3 move = (transform.right * x + transform.forward * y);
+        velocity += new Vector3(move.x, 0f, move.z);
+        velocity.y = 0f;
+        velocity = Vector3.ClampMagnitude(velocity, premag);
+        velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
     }
 }
