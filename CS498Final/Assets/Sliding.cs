@@ -51,11 +51,15 @@ public class Sliding : MonoBehaviour
         Vector3 newvel = Vector3.Lerp(player.velocity, move, slideTurnControl);
         player.velocity = newvel;
 
+        Debug.Log(newvel.magnitude);
+
         // Step 3 check exit condition
-        if (player.velocity.magnitude < player.walkSpeed / 2)
+        float magXY = new Vector3(player.velocity.x, 0f, player.velocity.z).magnitude;
+        if (magXY < 0.5f)
         {
             StartCoroutine(transitionSlide(slideHeight, 1f));
-            Debug.Log("exit Slide");
+            Debug.Log("exit too slow");
+            
 
             entered = false;
             player.isSliding = false;
@@ -66,13 +70,15 @@ public class Sliding : MonoBehaviour
     {
         if (!updateReady)
             return false;
-        
+
+        if (!exitSlide())
+            return false;
         // add jump influence from camera direction
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         player.JumpFromGrounded(x, y);
 
-        exitSlide();
+        
         return true;
     }
 
@@ -96,19 +102,23 @@ public class Sliding : MonoBehaviour
         entered = true;
     }
 
-    public void exitSlide()
+    public bool exitSlide()
     {
         if (!entered || !updateReady)
-            return;
+        {
+            Debug.Log("prevented");
+            return false;
+        }
         StartCoroutine(transitionSlide(slideHeight, 1f));
         Debug.Log("exit Slide");
 
         entered = false;
+        return true;
     }
 
     public bool checkSlide()
     {
-        bool slidePressed = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C);
+        bool slidePressed = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C);
 
         if (player.isWallRunning)
             return false;

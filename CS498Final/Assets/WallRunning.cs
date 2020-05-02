@@ -18,6 +18,8 @@ public class WallRunning : MonoBehaviour
     public float wallGravity = 0.5f;
     public float wallRunSpeed = 15f;
     public float wallRunJumpImpulse = 15f;
+    public float wallRunJumpControl = 0.8f;
+    public float wallRunJumpHeight = 3f;
     public float wallFriction = 20f;
 
     public float wallRunTimeout = 0.1f;
@@ -136,17 +138,21 @@ public class WallRunning : MonoBehaviour
     public bool jumpExitWallRun()
     {
 
-        // check if we face away from  wall, if so jump in that 
-        Debug.Log(Mathf.Acos(Vector3.Dot(transform.forward, runningDir)));
-        //return false;
-        //if (Mathf.Abs(Vector3.Dot(transform.forward, runningNormal)) < 0.25f)
-        //    return false;
-       
         // pretty much add impulse based on inputs
-        float x = Input.GetAxis("Horizontal");
-        Vector3 move =  (transform.forward) * wallRunJumpImpulse;
-        move.y = move.magnitude;
-        player.velocity += wallRunJumpImpulse * move.normalized;
+        Vector3 velXY = new Vector3(player.velocity.x, 0f, player.velocity.z);
+        if (velXY.magnitude < wallRunSpeed + wallRunJumpImpulse)
+        {
+            float x = Input.GetAxis("Horizontal");
+            Vector3 movegain = (transform.forward) * wallRunJumpImpulse;
+            player.velocity += wallRunJumpImpulse * movegain.normalized;
+        }
+
+        // add some y to vel
+
+        Vector3 move = transform.forward * player.velocity.magnitude;
+        Vector3 newvel = Vector3.Lerp(velXY, move, wallRunJumpControl);
+        newvel.y = Mathf.Clamp(Mathf.Sqrt(wallRunJumpHeight * -1f * player.gravity *wallGravity), -3f, wallRunJumpHeight*2);
+        player.velocity = newvel;
 
         undoWallRun();
 

@@ -25,9 +25,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     public Vector3 velocity;
-    public bool isGrounded;
-    public bool isWallRunning;
-    public bool isSliding;
+    public bool isGrounded = false;
+    public bool isWallRunning = false; 
+    public bool isSliding = false;
     bool isSprinting;
 
 
@@ -78,8 +78,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (slideStatus)
             {
-                isSliding = true;
                 slide_script.enterSlide();
+                isSliding = true;
             }
 
             if (!isSliding)
@@ -146,12 +146,12 @@ public class PlayerMovement : MonoBehaviour
             else
                 WR_script.inWallRunUpdate();
 
-            // if sliding, stop and undo
-            if (isSliding)
-            {
-                isSliding = false;
-                slide_script.exitSlide();
-            }
+            //// if sliding, stop and undo
+            //if (isSliding)
+            //{
+            //    if(slide_script.exitSlide())
+            //        isSliding = false;
+            //}
         }
         // jumping
         if (Input.GetButtonDown("Jump"))
