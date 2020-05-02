@@ -135,10 +135,12 @@ public class WallRunning : MonoBehaviour
 
     public bool jumpExitWallRun()
     {
-        
+
         // check if we face away from  wall, if so jump in that 
-        if (Mathf.Abs(Vector3.Dot(transform.forward, runningNormal)) < 0.25f)
-            return false;
+        Debug.Log(Mathf.Acos(Vector3.Dot(transform.forward, runningDir)));
+        //return false;
+        //if (Mathf.Abs(Vector3.Dot(transform.forward, runningNormal)) < 0.25f)
+        //    return false;
        
         // pretty much add impulse based on inputs
         float x = Input.GetAxis("Horizontal");

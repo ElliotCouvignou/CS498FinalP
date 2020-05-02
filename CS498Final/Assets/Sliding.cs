@@ -54,7 +54,10 @@ public class Sliding : MonoBehaviour
         // Step 3 check exit condition
         if (player.velocity.magnitude < player.walkSpeed / 2)
         {
-            exitSlide();
+            StartCoroutine(transitionSlide(slideHeight, 1f));
+            Debug.Log("exit Slide");
+
+            entered = false;
             player.isSliding = false;
         }
     }
@@ -89,6 +92,7 @@ public class Sliding : MonoBehaviour
             player.velocity.z *= slideBoost;
         }
         Debug.Log("Enter Slide");
+        player.isSliding = true;
         entered = true;
     }
 
