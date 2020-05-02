@@ -121,6 +121,8 @@ MonoBehaviour:
   slideBoostMax: 5
   slideFriction: 3
   slideHeight: 0.1
+  slideTurnControl: 1
+  transitionTime_s: 0.1
 --- !u!114 &2284821418606311641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +191,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   velocity: {x: 0, y: 0, z: 0}
+  isGrounded: 0
   isWallRunning: 0
+  isSliding: 0
 --- !u!1 &2284821418646566046
 GameObject:
   m_ObjectHideFlags: 0
