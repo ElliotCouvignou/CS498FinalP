@@ -23,10 +23,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask deathMask;
+
+    public Vector3 checkpointPos;
 
     public Vector3 velocity;
     public bool isGrounded = false;
-    public bool isWallRunning = false; 
+    public bool isWallRunning = false;
     public bool isSliding = false;
     bool isSprinting;
 
@@ -44,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         isSliding = false;
         isSprinting = false;
 
+        checkpointPos = transform.position;
+        checkpointPos.y += 1f;
+
     }
 
     // Update is called once per frame
@@ -51,6 +57,15 @@ public class PlayerMovement : MonoBehaviour
     {
         // check for floors underneath, done via sphere collision check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        // check death condition
+        bool isDeaded = Physics.CheckSphere(groundCheck.position, groundDistance, deathMask);
+        if (isDeaded)
+        {
+            handleDeath();
+            return;
+        }
+
 
         // check for collisions on left/right wallruns
         int WR_status = WR_script.checkWalls();
@@ -84,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!isSliding)
             {
-                
+
                 if (hasMoveInput)
                 {
                     // check for sprints
@@ -98,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
                     float premag = new Vector3(velocity.x, 0f, velocity.y).magnitude;
                     velocity.x += move.x;
                     velocity.z += move.z;
-                    
+
                     velocity = Vector3.ClampMagnitude(velocity, moveSpeed);
                 }
                 if (isWallRunning)
@@ -118,8 +133,8 @@ public class PlayerMovement : MonoBehaviour
                     velocity.x /= groundFriction;
                     velocity.z /= groundFriction;
                 }
-                
-                
+
+
             }
             else
             {
@@ -165,10 +180,10 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (isGrounded && isSliding)
             {
-                if(slide_script.jumpFromSlide())
+                if (slide_script.jumpFromSlide())
                     isSliding = false;
             }
-            else if (isWallRunning) 
+            else if (isWallRunning)
             {
                 if (WR_script.jumpExitWallRun())
                     isWallRunning = false;
@@ -196,5 +211,12 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = 0f;
         velocity = Vector3.ClampMagnitude(velocity, premag);
         velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
+    }
+
+    private void handleDeath()
+    {
+        transform.position = checkpointPos;
+        velocity = new Vector3(0.01f, 0f, 0.01f);
+        Debug.Log("done");
     }
 }
