@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // THIS IS NOT USINGRIGIDBODIES, they tend to cause collision issues from what i see
-
+    public AudioSource walkingsound;
+    public AudioSource jumpingsound;
+    public AudioSource sprintingsound;
+    public AudioSource slidingsound;
+    public AudioSource landingsound;
 
     private CharacterController controller;
     private WallRunning WR_script;
@@ -23,12 +27,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask deathMask;
+
+    public Vector3 checkpointPos;
 
     public Vector3 velocity;
     public bool isGrounded = false;
-    public bool isWallRunning = false; 
+    public bool isWallRunning = false;
     public bool isSliding = false;
     bool isSprinting;
+    bool landed;
 
 
     // Start is called before the first frame update
@@ -43,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         isWallRunning = false;
         isSliding = false;
         isSprinting = false;
+        landed = false;
+
+        checkpointPos = transform.position;
+        checkpointPos.y += 1f;
 
     }
 
@@ -51,6 +63,15 @@ public class PlayerMovement : MonoBehaviour
     {
         // check for floors underneath, done via sphere collision check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        // check death condition
+        bool isDeaded = Physics.CheckSphere(groundCheck.position, groundDistance, deathMask);
+        if (isDeaded)
+        {
+            handleDeath();
+            return;
+        }
+
 
         // check for collisions on left/right wallruns
         int WR_status = WR_script.checkWalls();
@@ -73,6 +94,31 @@ public class PlayerMovement : MonoBehaviour
 
         bool slideStatus = slide_script.checkSlide();
 
+        //audio for sliding
+        //if(hasMoveInput && isGrounded && slideStatus){
+          //if(!slidingsound.isPlaying)
+        //  {
+        //    slidingsound.PlayOneShot(slidingsound.clip);
+        //  }
+      //  }
+
+        //audio for walking
+        if(hasMoveInput && isGrounded && !SprintPressed && !slideStatus){
+          if (!walkingsound.isPlaying)
+          {
+              walkingsound.PlayOneShot(walkingsound.clip);
+          }
+        }
+
+        //audio for sprinting
+        else if(hasMoveInput && isGrounded && SprintPressed && !slideStatus){
+          if (!sprintingsound.isPlaying)
+          {
+              sprintingsound.PlayOneShot(sprintingsound.clip);
+          }
+        }
+
+
         // ground movement
         if (isGrounded)
         {
@@ -80,11 +126,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 slide_script.enterSlide();
                 isSliding = true;
+                //if(isliding){
+                if(!slidingsound.isPlaying)
+                  {
+                    slidingsound.PlayOneShot(slidingsound.clip);
+                  }
+                //}
             }
 
             if (!isSliding)
             {
-                
+
                 if (hasMoveInput)
                 {
                     // check for sprints
@@ -98,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
                     float premag = new Vector3(velocity.x, 0f, velocity.y).magnitude;
                     velocity.x += move.x;
                     velocity.z += move.z;
-                    
+
                     velocity = Vector3.ClampMagnitude(velocity, moveSpeed);
                 }
                 if (isWallRunning)
@@ -118,8 +170,8 @@ public class PlayerMovement : MonoBehaviour
                     velocity.x /= groundFriction;
                     velocity.z /= groundFriction;
                 }
-                
-                
+
+
             }
             else
             {
@@ -139,7 +191,12 @@ public class PlayerMovement : MonoBehaviour
                 isWallRunning = true;
                 WR_script.doWallRun(false);
             }
-
+            if(isWallRunning){
+              if (!walkingsound.isPlaying)
+              {
+                  walkingsound.PlayOneShot(walkingsound.clip);
+              }
+            }
             // Gravity
             if (!isWallRunning)
                 velocity.y += gravity * Time.deltaTime;  //  x = 1/2 a t^2
@@ -156,30 +213,53 @@ public class PlayerMovement : MonoBehaviour
         // jumping
         if (Input.GetButtonDown("Jump"))
         {
+            landed = true;
             if (isGrounded && !isSliding)
             {
                 JumpFromGrounded(x, y);
+
+                //audio for jumping
+                if (!jumpingsound.isPlaying)
+                    jumpingsound.PlayOneShot(jumpingsound.clip);
 
                 isGrounded = false;
                 isSprinting = false;
             }
             else if (isGrounded && isSliding)
             {
-                if(slide_script.jumpFromSlide())
+                if (slide_script.jumpFromSlide())
                     isSliding = false;
+
+                //audio for jumping
+                if (!jumpingsound.isPlaying)
+                    jumpingsound.PlayOneShot(jumpingsound.clip);
             }
-            else if (isWallRunning) 
+            else if (isWallRunning)
             {
                 if (WR_script.jumpExitWallRun())
                     isWallRunning = false;
+
+                //audio for jumping
+                if (!jumpingsound.isPlaying)
+                    jumpingsound.PlayOneShot(jumpingsound.clip);
             }
             else
             {
                 // walljump boost check
                 WR_script.wallJumpBackBoost();
+
+                //audio for jumping
+                if (!jumpingsound.isPlaying)
+                    jumpingsound.PlayOneShot(jumpingsound.clip);
             }
         }
 
+        if(isGrounded && landed){
+          if (!landingsound.isPlaying)
+              landingsound.PlayOneShot(landingsound.clip);
+
+          landed = false;
+        }
 
 
 
@@ -196,5 +276,12 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = 0f;
         velocity = Vector3.ClampMagnitude(velocity, premag);
         velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
+    }
+
+    private void handleDeath()
+    {
+        transform.position = checkpointPos;
+        velocity = new Vector3(0.01f, 0f, 0.01f);
+        Debug.Log("done");
     }
 }
