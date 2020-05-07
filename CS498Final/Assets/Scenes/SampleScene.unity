@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.26369405, g: 0.33976984, b: 0.4236515, a: 1}
+  m_IndirectSpecularColor: {r: 0.26370832, g: 0.33977157, b: 0.42374107, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1052,6 +1052,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1111,11 +1116,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -1588,6 +1588,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3334372630705297107, guid: 22db36c90060a7f4d9e35c7355cdae27,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 3334372630013394122, guid: 22db36c90060a7f4d9e35c7355cdae27,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1632,11 +1637,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334372630705297107, guid: 22db36c90060a7f4d9e35c7355cdae27,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 3334372630705297119, guid: 22db36c90060a7f4d9e35c7355cdae27,
         type: 3}
@@ -2077,6 +2077,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2131,11 +2136,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -2415,6 +2415,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2487,6 +2489,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: EXIT GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2774,6 +2778,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: RESUME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3529,6 +3535,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3583,11 +3594,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (5)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -3968,6 +3974,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4022,11 +4033,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (8)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -4311,6 +4317,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &492579427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4341,6 +4349,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4482,6 +4492,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: GAME PAUSED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6077,6 +6089,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -7734,7 +7748,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a4de98a817aad41428bed21ddf7994bd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -8717,6 +8731,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8771,11 +8790,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (7)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -10461,6 +10475,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10515,11 +10534,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -11706,6 +11720,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1640165255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11724,6 +11740,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -12177,6 +12195,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12232,40 +12255,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_AABB.m_Center.x
-      value: 0.000030517578
+      value: 43.813084
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: 0
+      value: 90.2435
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: 4.9999957
+      value: 0.07042694
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.46626252
+      value: 0.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: 0
+      value: 61.346485
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 4.999987
+      value: 0.5958519
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439c9a1777be76d46bcbc2bac4aba6ee, type: 3}
@@ -12276,6 +12294,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12330,11 +12353,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -12587,6 +12605,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12641,11 +12664,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (4)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
@@ -14445,6 +14463,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (9)
+      objectReference: {fileID: 0}
     - target: {fileID: 3056271212889853784, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14499,11 +14522,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3060711779562399116, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (9)
       objectReference: {fileID: 0}
     - target: {fileID: 3139937512310546604, guid: 439c9a1777be76d46bcbc2bac4aba6ee,
         type: 3}
