@@ -8556,7 +8556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f978c72ce36d6c4a9e1f533595511b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
+  pauseMenuUI: {fileID: 1386328554}
   Player: {fileID: 938663445}
 --- !u!4 &1041216903
 Transform:
@@ -10711,6 +10711,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1386328554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3334372630302569621, guid: 22db36c90060a7f4d9e35c7355cdae27,
+    type: 3}
+  m_PrefabInstance: {fileID: 170842656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1414712729
 PrefabInstance:
   m_ObjectHideFlags: 0
