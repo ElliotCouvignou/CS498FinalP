@@ -11,7 +11,7 @@ public class PlayScript : MonoBehaviour
     }
     public void PlayGame()
     {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      SceneManager.LoadScene("SampleScene");
     }
     // Update is called once per frame
     void Update()

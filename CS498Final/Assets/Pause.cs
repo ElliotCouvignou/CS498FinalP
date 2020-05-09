@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class Pause : MonoBehaviour
           ActivateMenu();
         }
       }
+    }
+
+    public void QuitGame()
+    {
+      Debug.Log("QUIT");
+      Time.timeScale = 1;
+      isPaused = !isPaused;
+      SceneManager.LoadScene("Menu");
     }
 
     void ActivateMenu()

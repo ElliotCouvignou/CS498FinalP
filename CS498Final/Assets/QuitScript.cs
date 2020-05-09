@@ -5,20 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class QuitScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+  // Start is called before the first frame update
+  void Start()
+  {
 
-    }
-    public void QuitGame()
-    {
-      Debug.Log("QUIT");
-      Application.Quit();
-      SceneManager.LoadScene("Menu");
-    }
-    // Update is called once per frame
-    void Update()
-    {
+  }
+  public void QuitGame()
+  {
+    Debug.Log("QUIT");
+//      Application.Quit();
+    SceneManager.LoadScene("Menu");
+  }
+  // Update is called once per frame
+  void Update()
+  {
 
-    }
+  }
 }
